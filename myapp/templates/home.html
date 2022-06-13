@@ -1,0 +1,367 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Home |
+{% endblock title %}
+
+
+
+{% block body %}
+<!-- Begin Main Slide -->
+
+<section class="main-slide">
+    <div id="owl-main-demo" class="owl-carousel main-demo">
+        <div class="item" id="item1"><img src="{% static 'images/content/slides/slider1.jpg' %}" class="img-responsive"
+                alt="Photo">
+            <div class="item-caption">
+                <div class="item-caption-inner">
+                    <div class="item-caption-wrap">
+                        <p class="item-cat"><a href="#">Fall/Winter 2014</a></p>
+                        <h2>Up to 20% off<br>on selected items</h2>
+                        <a href="/allproducts/" class="btn btn-white hidden-xs">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" id="item2"><img src="{% static 'images/content/slides/slider2.jpg' %}" class="img-responsive"
+                alt="Photo">
+            <div class="item-caption">
+                <div class="item-caption-inner">
+                    <div class="item-caption-wrap">
+                        <p class="item-cat"><a href="#">Top</a></p>
+                        <h2>25% off<br>on clothes</h2>
+                        <a href="/allproducts/" class="btn btn-white hidden-xs">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" id="item3"><img src="{% static 'images/content/slides/slider3.jpg' %}" class="img-responsive"
+                alt="Photo">
+            <div class="item-caption">
+                <div class="item-caption-inner">
+                    <div class="item-caption-wrap">
+                        <p class="item-cat"><a href="#"></a></p>
+                        <h2>shipping<br>only ₹50 </h2>
+                        <a href="/allproducts/" class="btn btn-white hidden-xs">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Main Slide -->
+
+<!-- Begin Ads -->
+<section class="ads">
+    <div class="container">
+        <div class="row">
+
+            {% for mcate in all_mcate %}
+
+            <div class="col-xs-4 animation">
+                <a href="/allproducts/?cid={{mcate.id}}"><img src="{{mcate.image.url}}" class="img-responsive"
+                        alt="Ad"></a>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- End Ads -->
+
+
+<!-- Begin Top Selling -->
+<section class="products-slide">
+    <div class="container">
+        <h2 class="title"><span>Top Discounted</span></h2>
+        <div class="row">
+            <div id="owl-product-slide" class="owl-carousel product-slide">
+
+                {% for prod in all_data %}
+                {% if prod.discount  >= 30 %}
+
+                <div class="col-md-12 animation">
+                    <div class="item product">
+                        <div class="product-thumb-info">
+                            <div class="product-thumb-info-image">
+                                <span class="product-thumb-info-act">
+                                    <a href="/productinformation/{{prod.id}}/" class="view-product">
+                                        <span><i class="fa fa-external-link"></i></span>
+                                    </a>
+                                    <a href="/addtocart/{{prod.id}}/" class="add-to-cart-product">
+                                        <span><i class="fa fa-shopping-cart"></i></span>
+                                    </a>
+                                </span>
+                                <img alt="" style="height: 250px;" class="img-responsive" src="{{prod.image.url}}">
+                            </div>
+                            <div class="product-thumb-info-content">
+                                <span class="price"><strong>₹ {{prod.sell_price}}&nbsp;&nbsp;</strong> <small
+                                        style="color: blue; ">{{prod.discount}}% off</small>
+                                    <h4><a href="/productinformation/{{prod.id}}/">{{prod.name|truncatewords:3}}</a></h4>
+                                    <span class="item-cat"><small style = "color:red"><strike>₹ {{prod.og_price}}</strike></small></span>
+                                    <span class="item-cat"><small style = "color:black" >You Save :₹ {{prod.discounted_price}}</small></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Top Selling -->
+
+
+<!-- Begin New Arrival -->
+<div class="container">
+    <h2 class="title"><span>New Arrival</span></h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="catalog">
+                <div class="row">
+                    {% for prod in all_products %}
+                    {% if prod.status == 'New-Arrival' %}
+
+                    <div class="col-xs-3 animation animated fadeInUp" style="opacity: 0;">
+                        <div class="product">
+                            <div class="product-thumb-info">
+                                <div class="product-thumb-info-image">
+                                    <span class="product-thumb-info-act">
+                                        <a href="/productinformation/{{prod.id}}/" class="view-product">
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </a>
+                                        <a href="/addtocart/{{prod.id}}/" class="add-to-cart-product">
+                                            <span><i class="fa fa-shopping-cart"></i></span>
+                                        </a>
+                                    </span>
+                                    <img style="height: 250px;" alt="" class="img-responsive" src="{{prod.image.url}}">
+                                </div>
+                                <div class="product-thumb-info-content">
+                                    <span class="price"><strong>₹ {{prod.sell_price}}&nbsp;&nbsp;</strong> <small
+                                            style="color: blue; ">{{prod.discount}}% off</small>
+                                        <h4><a href="/productinformation/{{prod.id}}/">{{prod.name|truncatewords:3}}</a></h4>
+                                        <span class="item-cat"><small style = "color:red"><strike>₹ {{prod.og_price}}</strike></small></span>
+                                        <span class="item-cat"><small style = "color:black" >You Save :₹ {{prod.discounted_price}}</small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                </div>
+
+
+
+                <!-- Pagination Number Block  -->
+                <div class="text-center">
+                    <div class="row float-right ">
+                        <span class="m-0 p-0">
+
+                            {% if all_products.has_previous %}
+                            <a class="btn btn-default btn-xs"
+                                href="?page={{all_products.previous_page_number}}&ok=#ok">«</a>
+                            {% endif %}
+
+
+                            <span>{% for pg in all_products.paginator.page_range %}
+                                {% if all_products.number == pg %}
+                                <a href="?page={{pg}}" class="btn btn-default btn-xs">
+                                    <span class="badge">{{pg}}</span>
+                                </a>
+                                {% else %}
+                                <a href="?page={{pg}}" class="btn btn-default btn-xs">
+                                    <span class="badge">{{pg}}</span>
+                                </a>
+                                {% endif %}
+                                {% endfor %}</span>
+
+                            {% if all_products.has_next %}
+                            <a class="btn btn-default btn-xs"
+                                href="?page={{all_products.next_page_number}}&ok=#ok">»</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                    <br>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- End New Arrival -->
+
+
+<!-- Begin Lookbook Women -->
+<section id="lookbook">
+    <div class="container">
+        <div class="lookbook">
+            <h2><a href="#">Lookbook</a></h2>
+            <p>Even before some laughter, who is vengeful for the gate.
+                The pain is important for the immune system and the throat. Until there is love and want of frustration.
+                Therefore it is easy for me to decorate my ugly health; or makeup is a cartoon. The Bureau of Law is
+                always</p>
+        </div>
+    </div>
+</section>
+<!-- End Lookbook Women -->
+
+
+<!-- Begin New Products -->
+<section class="product-tab">
+    <div class="container">
+        <h2 class="title"><span>New Products</span></h2>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs pro-tabs text-center animation" role="tablist">
+            <li class="active"><a href="#man" role="tab" data-toggle="tab">Man</a></li>
+            <li><a href="#woman" role="tab" data-toggle="tab">Woman</a></li>
+            <li><a href="#kids" role="tab" data-toggle="tab">Kids</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <div class="tab-pane active" id="man">
+                <div class="row">
+                    {% for prod in men %}
+
+                    <div class="col-xs-6 col-sm-3 animation">
+                        <div class="product">
+                            <div class="product-thumb-info">
+                                <div class="product-thumb-info-image">
+                                    <span class="product-thumb-info-act">
+                                        <a href="/productinformation/{{prod.id}}/" data-toggle="modal"
+                                            data-target=".quickview-wrapper" class="view-product">
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </a>
+                                        <a href="/addtocart/{{prod.id}}/" class="add-to-cart-product">
+                                            <span><i class="fa fa-shopping-cart"></i></span>
+                                        </a>
+                                    </span>
+                                    <img style="height: 250px;" alt="" class="img-responsive" src="{{prod.image.url}}">
+                                </div>
+                                <div class="product-thumb-info-content">
+                                    <span class="price"><strong>₹ {{prod.sell_price}}&nbsp;&nbsp;</strong> <small
+                                            style="color: blue; ">{{prod.discount}}% off </small>
+                                        <h4><a href="/productinformation/{{prod.id}}/">{{prod.name|truncatewords:3}}</a></h4>
+                                        <span class="item-cat"><small style = "color:red"><strike>₹ {{prod.og_price}}</strike></small></span>
+                                        <span class="item-cat"><small style = "color:black" >You Save :₹ {{prod.discounted_price}}</small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            <div class="tab-pane " id="woman">
+                <div class="row">
+                    {% for prod in women %}
+
+                    <div class="col-xs-6 col-sm-3 animation">
+                        <div class="product">
+                            <div class="product-thumb-info">
+                                <div class="product-thumb-info-image">
+                                    <span class="product-thumb-info-act">
+                                        <a href="javascript:void(0);" data-toggle="modal"
+                                            data-target=".quickview-wrapper" class="view-product">
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </a>
+                                        <a href="/addtocart/{{prod.id}}/" class="add-to-cart-product">
+                                            <span><i class="fa fa-shopping-cart"></i></span>
+                                        </a>
+                                    </span>
+                                    <img style="height: 250px;" alt="" class="img-responsive" src="{{prod.image.url}}">
+                                </div>
+                                <div class="product-thumb-info-content">
+                                    <span class="price"><strong>{{prod.sell_price}}</strong><span
+                                            class="item-cat pull-right text-primary"><small> {{prod.discount}}%
+                                                off</small></span></span>
+                                    <h4><a href="shop-product-detail2.html">{{prod.name|truncatewords:2}}</a></h4>
+                                    <span class="item-cat"><small><strike>{{prod.og_price}}</strike></small></span>
+                                    <span class="item-cat"><small>You Save :{{prod.discounted_price}}</small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            <div class="tab-pane " id="kids">
+                <div class="row">
+                    {% for prod in kids %}
+
+                    <div class="col-xs-6 col-sm-3 animation">
+                        <div class="product">
+                            <div class="product-thumb-info">
+                                <div class="product-thumb-info-image">
+                                    <span class="product-thumb-info-act">
+                                        <a href="javascript:void(0);" data-toggle="modal"
+                                            data-target=".quickview-wrapper" class="view-product">
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </a>
+                                        <a href="/addtocart/{{prod.id}}/" class="add-to-cart-product">
+                                            <span><i class="fa fa-shopping-cart"></i></span>
+                                        </a>
+                                    </span>
+                                    <img style="height: 250px;" alt="" class="img-responsive" src="{{prod.image.url}}">
+                                </div>
+                                <div class="product-thumb-info-content">
+                                    <span class="price"><strong>{{prod.sell_price}}</strong><span
+                                            class="item-cat pull-right text-primary"><small> {{prod.discount}}%
+                                                off</small></span></span>
+                                    <h4><a href="shop-product-detail2.html">{{prod.name|truncatewords:2}}</a></h4>
+                                    <span class="item-cat"><small><strike>{{prod.og_price}}</strike></small></span>
+                                    <span class="item-cat"><small>You Save :{{prod.discounted_price}}</small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</section>
+<!-- End New Products -->
+
+
+<!-- Begin Parallax -->
+<section class="pi-parallax" data-stellar-background-ratio="0.6">
+    <div class="container">
+        <div id="owl-text-slide" class="owl-carousel">
+            <div class="item">
+                <blockquote>
+                    <p>Design is a funny word. Some people think design means how it looks. But of course, if you
+                        dig
+                        deeper, it’s really how it works.</p>
+                    <footer>by <cite title="Steve Jobs">Steve Jobs</cite></footer>
+                </blockquote>
+            </div>
+            <div class="item">
+                <blockquote>
+                    <p>They may forget what you said, but they will never forget how you made them feel.</p>
+                    <footer>by <cite title="Steve Jobs">Carl W. Buechner</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Parallax -->
+
+
+{% endblock body %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Address |
+{% endblock title %}
+
+
+
+{% block body %}
+<section class="page-top">
+    <div class="container">
+        <div class="page-top-in">
+            <h2><span>Address</span></h2>
+        </div>
+    </div>
+</section>
+
+
+<div class="container">
+
+    <div class="row featured-boxes">
+        <div class="col-md-8">
+
+            <div class="featured-box featured-box-secondary featured-box-cart">
+                <div class="box-content">
+                    <h4>Billing Address</h4>
+                    <div class="form-horizontal">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <div class="list-sort">
+                                </div>
+                            </div>
+                        </div>
+                        {% for fm in form %}
+                        <div class="form-group">
+                            <label for="inputusername">{{fm.label_tag}}</label>
+                            {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                        </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary ">Submit</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

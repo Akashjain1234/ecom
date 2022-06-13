@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Product Information |
+{% endblock title %}
+
+
+{% block body %}
+
+<div role="main" class="main">
+
+    <!-- Begin page top -->
+    <section class="page-top">
+        <div class="container">
+            <div class="page-top-in">
+                <ol class="breadcrumb pull-left">
+                    <li><a href="#">{{get_product.mcate}}</a></li>
+                    <li><a href="#">{{get_product.scate}}</a></li>
+                </ol>
+            </div>
+        </div>
+    </section>
+    <!-- End page top -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="product-preview">
+                    <div class="flexslider">
+                        <div class="flex-viewport" style="overflow: hidden; position: relative;">
+
+                            <ul class="slides"
+                                style="width: 1400%; transition-duration: 0s; transform: translate3d(-345px, 0px, 0px);">
+                                <li data-thumb="{% static 'images/content/products/product-1-4.jpg' %}" class="clone"
+                                    aria-hidden="true" style="float: left; display: block; width: 345px;">
+                                    <img src="{{get_product.image.url}}" alt=""
+                                        draggable="false">
+                                </li>
+                               
+                                
+                            </ul>
+
+                        </div>
+                        
+                        <ul class="flex-direction-nav">
+                            <li><a class="flex-prev" href="#">Previous</a></li>
+                            <li><a class="flex-next" href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="summary entry-summary">
+
+                    <h3>{{get_product.name}}</h3>
+
+                    <p class="price">
+                        <span class="amount">₹{{get_product.sell_price}}</span>
+                    </p>
+
+                    <ul class="list-inline list-select clearfix">
+                        <li>
+                            <div class="list-sort">
+                                <select class="formDropdown">
+                                    <option>Select Size</option>
+                                    <option>XS</option>
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>XL</option>
+                                    <option>XXL</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <form method="POST" class="text-center">
+                        <a href="/addtocart/{{prod.id}}/" class="btn btn-primary btn-icon"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                    </form>
+
+                    <ul class="list-unstyled product-meta">
+                        <li>Categories: <a >{{get_product.scate}}</a> <a href="#">{{get_product.mcate}}</a></li>
+                        <li>Tags: <a>{{get_product.scate}}</a><a href="#">{{get_product.mcate}}</a> <a
+                                href="#">T-shirt</a></li>
+                    </ul>
+
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseOne">Description</a> </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <p>{{get_product.info}}</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                        richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
+                                        brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                        shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                                        cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+                                        Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
+                                        you probably haven't heard of them accusamus labore sustainable VHS.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion"
+                                        >Reviews (3)</a> </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body post-comments">
+                                    <ul class="comments">
+                                        <li>
+                                            <div class="comment">
+                                                <div class="img-circle"> <img class="avatar" width="50" alt=""
+                                                        src="{% static 'images/content/blog/avatar.png' %}"> </div>
+                                                <div class="comment-block">
+                                                    <span class="comment-by"> <strong>Frank Reman</strong></span>
+                                                    <span class="date"><small><i class="fa fa-clock-o"></i> January 12,
+                                                            2013</small></span>
+                                                    <p>Lorem ipsum dolor sit amet.</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="comment">
+                                                <div class="img-circle"> <img class="avatar" width="50" alt=""
+                                                        src="{% static 'images/content/blog/avatar.png' %}"> </div>
+                                                <div class="comment-block">
+                                                    <span class="comment-by"> <strong>Frank Reman</strong></span>
+                                                    <span class="date"><small><i class="fa fa-clock-o"></i> July 11,
+                                                            2014</small></span>
+                                                    <p>Nam viverra euismod odio, gravida pellentesque urna varius vitae,
+                                                        gravida pellentesque urna varius vitae</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="comment">
+                                                <div class="img-circle"> <img class="avatar" width="50" alt=""
+                                                        src="{% static 'images/content/blog/avatar.png' %}"> </div>
+                                                <div class="comment-block">
+                                                    <span class="comment-by"> <strong>Frank Reman</strong></span>
+                                                    <span class="date"><small><i class="fa fa-clock-o"></i> July 11,
+                                                            2014</small></span>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

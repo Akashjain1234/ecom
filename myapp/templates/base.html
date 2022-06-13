@@ -1,0 +1,318 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="HTML5 Template" />
+	<meta name="description" content="Flatize - Shop HTML5 Responsive Template">
+	<meta name="author" content="pixelgeeklab.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+
+		{% block title %}
+
+		{% endblock title %}
+
+	</title>
+
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
+
+	<!-- Bootstrap -->
+	<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+	<!-- Icon Fonts -->
+	<link href="{% static 'css/fonts/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+	<!-- Owl Carousel Assets -->
+	<link href="{% static 'vendor/owl-carousel/owl.carousel.css' %}" rel="stylesheet">
+	<link href="{% static 'vendor/owl-carousel/owl.theme.css' %}" rel="stylesheet">
+	<link href="{% static 'vendor/owl-carousel/owl.transitions.css' %}" rel="stylesheet">
+
+	<!-- bxslider -->
+	<link href="{% static 'vendor/bxslider/jquery.bxslider.css' %}" rel="stylesheet">
+	<!-- flexslider -->
+	<link rel="stylesheet" href="{% static 'vendor/flexslider/flexslider.css' %}" media="screen">
+
+	<!-- Theme -->
+	<link href="{% static 'css/theme-animate.css' %}" rel="stylesheet">
+	<link href="{% static 'css/theme-elements.css' %}" rel="stylesheet">
+	<link href="{% static 'css/theme-blog.css' %}" rel="stylesheet">
+	<link href="{% static 'css/theme-shop.css' %}" rel="stylesheet">
+	<link href="{% static 'css/theme.css' %}" rel="stylesheet">
+
+	<!-- Style Switcher-->
+	<link rel="stylesheet" href="{% static 'style-switcher/css/style-switcher.css' %}">
+	<link href="{% static 'css/colors/cyan/style.html' %}" rel="stylesheet" id="layoutstyle">
+
+	<!-- Theme Responsive-->
+	<link href="{% static 'css/theme-responsive.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+	<div id="page">
+		<header>
+			<div id="top">
+				<div class="container">
+					<ul class="nav nav-pills nav-top navbar-right">
+						<li class="dropdown langs">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img
+									src="{% static 'images/flags/en.gif' %}" alt="English"> <span
+									class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#"><img src="{% static 'images/flags/ar.gif' %}" alt="AR"></a></li>
+								<li><a href="#"><img src="{% static 'images/flags/ca.gif' %}" alt="CA"></a></li>
+								<li><a href="#"><img src="{% static 'images/flags/de.gif' %}" alt="DE"></a></li>
+								<li><a href="#"><img src="{% static 'images/flags/es.gif' %}" alt="ES"></a></li>
+								<li><a href="#"><img src="{% static 'images/flags/et.gif' %}" alt="ET"></a></li>
+								<li><a href="#"><img src="{% static 'images/flags/fa.gif' %}" alt="FA"></a></li>
+								<li><a href="#"><img src="{% static 'images/flags/fr.gif' %}" alt="FR"></a></li>
+								<li><a href="#"><img src="{% static 'images/flags/ja.gif' %}" alt="JA"></a></li>
+							</ul>
+						</li>
+						<li class="dropdown my-account">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{request.user.username}} <span
+									class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/address/">Address</a></li>
+								<li><a href="/cart/">Cart</a></li>
+								<li><a href="/order/">Order</a></li>
+								<li><a href="/checkout/">Checkout</a></li>
+								<hr>
+								<li><a href="/out/">Logout</a></li>
+							</ul>
+
+						</li>
+						<li class="dropdown menu-shop">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<h3><i class="fa fa-shopping-cart"></i> <span
+										class="shopping-bag"><strong>{{cart_count}}</strong></span></h3>
+							</a>
+							<div class="dropdown-menu">
+								<h3>Recently added item(s)</h3>
+								<ul class="list-unstyled list-thumbs-pro">
+
+									{% for i in cart_items %}
+
+									<li class="product">
+										<div class="product-thumb-info">
+											
+											<div class="product-thumb-info-image">
+												<a href="shop-product-detail1.html"><img alt="" width="60"
+														src="{{i.product.image.url}}"></a>
+											</div>
+											<div class="product-thumb-info-content">
+												<h4><a href="shop-product-detail2.html">{{i.product.name}}</a></h4>
+												<span class="item-cat"><small><a
+															href="#">{{i.product.scate}}</a></small></span>
+												<span class="price">{{i.product.sell_price}}</span>
+											</div>
+										</div>
+										{% empty %}
+										<div class="text-center">
+											<img src="{% static 'images/emptycart.jpg' %}" alt="">
+										</div>
+										<br>
+									</li>
+									{% endfor %}
+								</ul>
+
+								<div class="cart-buttons text-right">
+									<button class="btn btn-white"><a href="/cart/">View Cart</a></button>
+									<button class="btn btn-primary"><a href="/checkout/">Checkout</a></button>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<nav class="navbar navbar-default navbar-main navbar-main-slide" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+						</button>
+						<a class="logo" href="/home/"><img src="{% static 'images/logo.png' %}" alt="Flatize"></a>
+					</div>
+					<ul class="nav navbar-nav navbar-act pull-right">
+						<li class="search"><a href="javascript:void(0);" data-toggle="modal"
+								data-target=".bs-example-modal-lg"><i class="fa fa-search"></i></a></li>
+					</ul>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav pull-right">
+							<li><a href="/home/">Home</a>
+							</li>
+							<li><a href="/allproducts/">Shop</a>
+							</li>
+							<li><a href="/cart/">Cart</a>
+							</li>
+							<li><a href="/blog/">Blog</a>
+							</li>
+							<li><a href="/contact/">Contact</a>
+							</li>
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+				</div>
+				<!--/.container-fluid -->
+			</nav>
+		</header>
+
+
+
+		<!-- Begin Main -->
+
+
+
+		{% block body %}
+
+		{% endblock body %}
+
+
+		<!-- End Main -->
+
+		<!-- Begin footer -->
+		<footer class="footer">
+			<div class="container">
+				<div class="upper-foot">
+					<div class="row">
+						<div class="col-xs-6 col-sm-3">
+							<h2>Contact detail</h2>
+							<address>
+								<i class="fa fa-map-marker"></i> No.123 Pellentesque nec erat.<br>
+								Aenean semper, neque non faucibus.<br>
+								<i class="fa fa-phone"></i> Phone. (123) 456-7890<br>
+								<i class="fa fa-fax"></i> Fax. (123) 456-7890<br>
+								<i class="fa fa-envelope"></i> E-mail. <a href="mailto:#">first.last@example.com</a>
+							</address>
+						</div>
+						<div class="col-xs-6 col-sm-3">
+							<h2>Useful links</h2>
+							<ul class="list-unstyled">
+								<li><a href="#">Track Orders</a></li>
+								<li><a href="#">FAQs</a></li>
+								<li><a href="#">Services</a></li>
+								<li><a href="#">Free Credit Report</a></li>
+								<li><a href="#">Terms and Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Community Guidelines</a></li>
+							</ul>
+						</div>
+						<div class="col-xs-6 col-sm-3">
+							<h2>Tags</h2>
+							<ul class="list-inline tagclouds">
+								<li><a href="#">Image</a></li>
+								<li><a href="#">Features</a></li>
+								<li><a href="#">Gallery</a></li>
+								<li><a href="#">Post Formats</a></li>
+								<li><a href="#">Typography</a></li>
+								<li><a href="#">WooCommerce</a></li>
+								<li><a href="#">Shortcodes</a></li>
+								<li><a href="#">Best Sellers</a></li>
+								<li><a href="#">Slideshow</a></li>
+							</ul>
+						</div>
+						<div class="col-xs-6 col-sm-3">
+							<h2>Don’t miss out</h2>
+							<p>In venenatis neque a eros laoreet eu placerat erat suscipit. Fusce cursus, erat ut
+								scelerisque.</p>
+							<form class="form-inline form-newsletter" role="form">
+								<div class="form-group">
+									<label class="sr-only" for="exampleInputEmail2">Email address</label>
+									<input type="email" class="form-control" id="exampleInputEmail2"
+										placeholder="Enter your email here">
+								</div>
+								<button type="submit" class="btn"><i class="fa fa-caret-right"></i></button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="below-foot">
+					<div class="row">
+						<div class="col-xs-6 copyrights">
+							<p>Copyright © 2013 Flatize. Designed by <a
+									href="http://pixelgeeklab.com/">PixelGeekLab</a><br>
+								All rights reserved.</p>
+						</div>
+						<div class="col-xs-6 text-right">
+							<ul class="list-inline social-list">
+								<li><a data-toggle="tooltip" data-placement="top" title="Facebook" href="#"><i
+											class="fa fa-facebook"></i></a></li>
+								<li><a data-toggle="tooltip" data-placement="top" title="Twitter" href="#"><i
+											class="fa fa-twitter"></i></a></li>
+								<li><a data-toggle="tooltip" data-placement="top" title="Google+" href="#"><i
+											class="fa fa-google-plus"></i></a></li>
+								<li><a data-toggle="tooltip" data-placement="top" title="Pinterest" href="#"><i
+											class="fa fa-pinterest"></i></a></li>
+								<li><a data-toggle="tooltip" data-placement="top" title="RSS" href="#"><i
+											class="fa fa-rss"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- End footer -->
+
+	</div>
+
+	<!-- Begin Quickview -->
+
+
+
+
+
+
+	<!-- Begin Search -->
+	<div class="modal fade bs-example-modal-lg search-wrapper" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<p class="clearfix"><button type="button" class="close" data-dismiss="modal"><span
+							aria-hidden="true">×</span><span class="sr-only">Close</span></button></p>
+				<form action="/searchview/" class="form-inline form-search" role="form" method="GET">
+					<div class="form-group">
+						<label class="sr-only" for="textsearch">Enter text search</label>
+						<input type="text" name="s_name" class="form-control input-lg" id="textsearch"
+							placeholder="Enter text search">
+					</div>
+					<button type="submit" class="btn btn-white">Search</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- End Search -->
+
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="{% static 'vendor/jquery.min.js' %}"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'bootstrap/js/bootstrap-hover-dropdown.min.js' %}"></script>
+	<script src="{% static 'vendor/owl-carousel/owl.carousel.js' %}"></script>
+	<script src="{% static 'vendor/modernizr.custom.js' %}"></script>
+	<script src="{% static 'vendor/jquery.stellar.js' %}"></script>
+	<script src="{% static 'vendor/imagesloaded.pkgd.min.js' %}"></script>
+	<script src="{% static 'vendor/masonry.pkgd.min.js' %}"></script>
+	<script src="{% static 'vendor/jquery.pricefilter.js' %}"></script>
+	<script src="{% static 'vendor/bxslider/jquery.bxslider.min.js' %}"></script>
+	<script src="{% static 'vendor/mediaelement-and-player.js' %}"></script>
+	<script src="{% static 'vendor/waypoints.min.js' %}"></script>
+	<script src="{% static 'vendor/flexslider/jquery.flexslider-min.js' %}"></script>
+
+	<!-- Theme Initializer -->
+	<script src="{% static 'js/theme.plugins.js' %}"></script>
+	<script src="{% static 'js/theme.js' %}"></script>
+
+	<!-- Style Switcher -->
+	<script type="text/javascript" src="{% static 'style-switcher/js/switcher.js' %}"></script>
+
+</body>
+
+</html>

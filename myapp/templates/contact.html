@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Contact |
+{% endblock title %}
+
+
+{% block body %}
+
+<!-- Begin page top -->
+<section class="page-top-lg">
+    <div class="container">
+        <div class="page-top-in">
+            <h2><span>Get In Touch</span></h2>
+        </div>
+    </div>
+</section>
+<!-- End page top -->
+<div class="container">
+    <div class="contact-content contact-content-full animation animated fadeInUp" style="opacity: 0;">
+        <div class="contact-intro">
+            <h3>ALOHA!</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4><i class="fa fa-map-marker"></i> United states</h4>
+                <address>5th Avenue, 10019 New York, United States<br>+1 310 666 8888<br>+1 310 666 9999<br><a
+                        href="mailto:store_1@companyname.com">store_1@companyname.com</a></address>
+            </div>
+            <div class="col-md-4">
+                <h4><i class="fa fa-map-marker"></i> Canada</h4>
+                <address>Alexander Street, Vancouver, BC V6A 1E1, Canada<br>+1 310 666 8888<br>+1 310 666 9999<br><a
+                        href="mailto:store_1@companyname.com">store_1@companyname.com</a></address>
+            </div>
+            <div class="col-md-4">
+                <h4><i class="fa fa-map-marker"></i> Italy</h4>
+                <address>Pzza Martiri Olivetta, 16, 16034, Portofino, Italy<br>+1 310 666 8888<br>+1 310 666 9999<br><a
+                        href="mailto:store_1@companyname.com">store_1@companyname.com</a></address>
+            </div>
+        </div>
+        <hr class="tall">
+
+        <h3>Contact Form</h3>
+        <form id="contact-form" name="form1" method="post"
+            action="http://pixelgeeklab.com/html/flatize/send_contact.php" novalidate="novalidate">
+            <div class="row">
+                <div class="col-xs-5 col-sm-4">
+                    <div class="form-group">
+                        <label for="date_input">Date</label>
+                        <div class="input-group date" id="datetimepicker1">
+                            <input type="text" class="form-control" name="date_input" id="date_input">
+                            <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="time_input">Time</label>
+                        <div class="input-group date" id="datetimepicker4">
+                            <input type="text" class="form-control" name="time_input" id="time_input">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Your Name*</label>
+                        <input type="text" class="form-control" id="name" name="name" value=""
+                            data-msg-required="Please enter your name." required="" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="customer_mail">Your Email*</label>
+                        <input type="email" class="form-control" id="customer_mail" name="customer_mail" value=""
+                            data-msg-required="Please enter your email address."
+                            data-msg-email="Please enter a valid email address." required="" aria-required="true">
+                    </div>
+
+                </div>
+
+                <div class="col-xs-7 col-sm-8">
+                    <div class="form-group">
+                        <label for="subject">Subject*</label>
+                        <input type="text" class="form-control" id="subject" name="subject" value=""
+                            data-msg-required="Please enter the subject." required="" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="comments">Your Message*</label>
+                        <textarea class="form-control" id="comments" name="comments" rows="8"
+                            data-msg-required="Please enter your message." required="" aria-required="true"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary" data-loading-text="Loading...">
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+</div>
+{% endblock body %}

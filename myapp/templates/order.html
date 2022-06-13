@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Order |
+{% endblock title %}
+
+{% block body %}
+<table class="table" style="width:100%">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+          <th scope="col">User</th>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Address</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for x in placeord %}
+        <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{request.user}}</td>
+        <!-- <td><img style="height: 70px;" src="{{product.image.url}}" alt=""></td> -->
+        <td>{{x.product.name}}</td>
+        <td>{{x.quantity}}</td>
+        <td>{{x.address}}</td>
+        <td>{{x.status}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock body %}
+    

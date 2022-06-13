@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    Signin |
+{% endblock title %}
+
+
+{% block body %}
+<div class="container" style="padding: 60px;">
+    <div class="row " >
+        <div class="col-sm-12 col-lg-5" style="border: 1px solid; padding: 30px;margin: auto;">
+
+            <div>
+                
+                {% for msg in messages %}
+                    {{msg}}
+                {% endfor %}
+                    
+            </div>
+            <!-- Begin Login -->
+                <form id="form-login" role="form" method="POST" novalidate>
+                    {% csrf_token %}
+                    <h4>Login</h4>
+                    <p>If you're a member, login here.</p>
+                    
+                    
+                    <div class="form-group">
+                        <label for="inputusername">Username</label>
+                        <input type="text" class="form-control input-lg" name="uname" id="inputusername" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputusername">Password</label>
+                        <input type="password" class="form-control input-lg" name="upass" id="inputusername" placeholder="Password">
+                    </div>
+                    
+                    
+                    
+                    
+                    <ul class="list-inline">
+                        <li><a href="/signup/">Create new account</a></li>
+                        <li><a href="#">Request new password</a></li>
+                    </ul>
+                    <input type="submit" value="Signin" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading...">
+                </form>
+            <!-- End Login -->
+        </div>
+    </div>
+</div>
+{% endblock body %}
+    
+    

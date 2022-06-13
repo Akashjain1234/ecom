@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Cart |
+{% endblock title %}
+
+
+
+{% block body %}
+<section class="page-top">
+    <div class="container">
+        <div class="page-top-in">
+            <h2><span>Shopping Bag</span></h2>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+
+    <div class="row featured-boxes">
+        <div class="col-md-12">
+            <div class="featured-box featured-box-cart">
+                <div class="box-content">
+                    <form method="post" action="#">
+                        <table cellspacing="0" class="shop_table" width="100%">
+                            
+                            {% if cart_items %}
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail">
+                                        Item
+                                    </th>
+                                    <th class="product-name">
+                                        Product name
+                                    </th>
+                                    <th class="product-price">
+                                        Price
+                                    </th>
+                                    <th class="product-quantity">
+                                        Quantity
+                                    </th>
+                                    <th class="product-subtotal">
+                                        SubTotal
+                                    </th>
+                                    <th class="product-remove">
+                                        &nbsp;
+                                    </th>
+
+                                </tr>
+
+
+                            </thead>
+                            {% endif %}
+
+                            <tbody>
+
+                                {% for x in cart_items %}
+                                <tr class="cart_table_item">
+                                    <td class="product-thumbnail">
+                                        <a href="shop-product-sidebar.html">
+                                            <img alt="" width="80" src="{{x.product.image.url}}">
+                                        </a>
+                                    </td>
+                                    <td class="product-name">
+                                        <a href="shop-product-sidebar.html">{{x.product.name}}</a>
+                                    </td>
+                                    <td class="product-price">
+                                        <span class="amount">{{x.product.sell_price}}</span>
+                                    </td>
+                                    <td class="product-quantity">
+
+                                        <div class="quantity" style="width:120px;">
+                                            <span data-value="Minus" class="quantity-btn quantityMinus"></span>
+                                            <a href="{% url 'MinusView' x.id %}" class="btn btn-grey btn-xs">-</a>
+                                            <label for="">{{x.quantity}}</label>
+                                            <a href="{% url 'PlusView' x.id %}" class="btn btn-grey btn-xs">+</a>
+                                            <span data-value="Plus" class="quantity-btn quantityPlus"></span>
+                                        </div>
+
+                                    </td>
+                                    <td class="product-subtotal">
+                                        <span class="amount">{{x.product.sell_price}}</span>
+                                    </td>
+                                    <td class="product-remove">
+                                        <a title="Remove this item" class="remove" href="/delete/{{x.id}}/">
+                                            <i class="fa fa-times-circle"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <div class="text-center">
+                                    <img src="{% static 'images/empty.jpg' %}" alt="">
+                                </div>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row featured-boxes">
+        <div class="col-xs-4">
+            <div class="featured-box featured-box-secondary">
+                <div class="box-content">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="featured-box featured-box-secondary">
+            </div>
+        </div>
+        {% if cart_items %}
+        <div class="col-xs-4">
+            <div class="featured-box featured-box-secondary">
+                <div class="box-content">
+
+                    <h4>Shopping bag summary</h4>
+                    <table cellspacing="0" class="cart-totals" width="100%">
+                        <tbody>
+                            <tr class="cart-subtotal">
+                                <th>
+                                    Cart Subtotal
+                                </th>
+                                <td>{{subtotal}}</span>
+                                </td>
+                            </tr>
+                            <tr class="shipping">
+                                <th>
+                                    Shipping
+                                </th>
+                                <td>
+                                    50<input type="hidden" value="free_shipping" id="shipping_method"
+                                        name="shipping_method">
+                                </td>
+                            </tr>
+                            <tr class="total">
+                                <th>
+                                    Total
+                                </th>
+                                <td>
+                                    <span class="amount">{{total}}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="/checkout/"><input type="submit" value="Proceed To checkout"
+                            class="btn btn-default btn-block btn-sm" data-loading-text="Loading..."></a>
+                    <a href="/home/"><input type="submit" value="Continue Shopping"
+                            class="btn btn-grey btn-block btn-sm" data-loading-text="Loading..."></a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock body %}

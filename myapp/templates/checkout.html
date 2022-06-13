@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Checkout |
+{% endblock title %}
+
+
+
+{% block body %}
+<div role="main" class="main">
+
+    <!-- Begin page top -->
+    <section class="page-top">
+        <div class="container">
+            <div class="page-top-in">
+                <h2><span>Checkout</span></h2>
+            </div>
+        </div>
+    </section>
+    <!-- End page top -->
+
+    <div class="container">
+        <div class="row featured-boxes">
+            <form action="/order/" method="GET">
+                <div class="col-md-8"> 
+                    <div class="featured-box featured-box-secondary featured-box-cart">
+                        <div class="box-content">
+                            <h4>Billing Address</h4>
+                            <div class="form-horizontal">
+                                <p>Please select your address:</p>
+                                {% for y in all_address %}
+                                <input type="radio" id="all_address" name="all_address" value="{{y.id}}">
+                                <label for="address">{{y}}</label><br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="featured-box featured-box-secondary sidebar">
+                        <div class="box-content">
+                            <h4>Your Order</h4>
+                            <table cellspacing="0" class="cart-totals" width="100%">
+                                <tbody>
+                                    {% for x in cart_items %}
+                                    <tr class="cart_table_item">
+                                        <th>
+                                            <span class="product-name">{{x.product.name}}</span><br>
+                                            <span class="quantity">Quantity: {{x.quantity}}</span>
+                                        </th>
+                                        <td class="product-price">
+                                            <span class="amount">{{x.product.sell_price}}</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    <tr class="cart-subtotal">
+                                        <th>
+                                            Cart Subtotal
+                                        </th>
+                                        <td class="product-price">
+                                            <span class="amount">{{subtotal}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="shipping">
+                                        <th>
+                                            Shipping
+                                        </th>
+                                        <td>
+                                            ₹50<input type="hidden" value="free_shipping" id="shipping_method"
+                                                name="shipping_method">
+                                        </td>
+                                    </tr>
+                                    <tr class="total">
+                                        <th>
+                                            Total
+                                        </th>
+                                        <td class="product-price">
+                                            <strong><span class="amount">{{total}}</span></strong>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p><input type="submit" value="Place Order" class="btn btn-primary btn-block btn-sm"
+                                    data-loading-text="Loading..."></p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_3MiCqcvhaYTvEk"
+                            data-amount={{response.amount}} data-currency={{response.currency}}
+                            data-order_id={{response.id}} data-buttontext="Pay with Razorpay"
+                            data-name="Payment" data-description="" data-image=""
+                            data-prefill.name={{request.user.username}} data-prefill.email={{request.user.email}}
+                            data-theme.color="#000000"></script>
+                        <input type="hidden" custom="Hidden Element" name="hidden">
+            </form>
+        </div>
+
+    </div>
+ 
+</div>
+{% endblock body %}

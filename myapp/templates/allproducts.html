@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+All Products |
+{% endblock title %}
+
+
+{% block body %}
+
+
+<!-- Begin page top -->
+<section class="page-top-md">
+    <div class="container">
+        <div class="page-top-in">
+            <h2><span>All Products</span></h2>
+        </div>
+    </div>
+</section>
+<!-- End page top -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <aside class="sidebar">
+                
+                <aside class="block blk-cat">
+                    <h4>Category</h4>
+                    <ul class="list-unstyled list-cat">
+                        <li><a href="/allproducts/">All-Products</a></li>
+
+                        {% for mcate in all_mcate %}
+                        <li><a href="/allproducts/?cid={{mcate.id}}">{{mcate.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </aside>
+            </aside>
+        </div>
+        <div class="col-md-9">
+            <!-- Begin Lookbook Women -->
+            <section id="lookbook">
+                <div class="lookbook">
+                    <h2><a href="#">Lookbook</a></h2>
+                    <p>Even before some laughter, who is vengeful for the gate. The pain is important for the immune
+                        system and the throat. Until there is love and want of frustration. Therefore it is easy for me
+                        to decorate my ugly health; or makeup is a cartoon. The Bureau of Law is always</p>
+                </div>
+            </section>
+            <!-- End Lookbook Women -->
+
+            <div class="catalog">
+                <div class="toolbar clearfix">
+                    <p class="pull-left">Showing results</p>
+                </div>
+
+                <div class="row">
+
+                    {% for prod in all_products %}
+                    <div class="col-xs-3 animation animated fadeInUp" style="opacity: 0;">
+                        <div class="product">
+                            <div class="product-thumb-info">
+                                <div class="product-thumb-info-image">
+                                    <span class="product-thumb-info-act">
+                                        <a href="/productinformation/{{prod.id}}/" class="view-product">
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </a>
+                                        <a href="/addtocart/{{prod.id}}/" class="add-to-cart-product">
+                                            <span><i class="fa fa-shopping-cart"></i></span>
+                                        </a>
+                                    </span>
+                                    <img alt="" style="height: 200px" class="img-responsive" src="{{prod.image.url}}">
+                                </div>
+                                <div class="product-thumb-info-content">
+                                    <span class="price"><strong>₹ {{prod.sell_price}}&nbsp;&nbsp;</strong> <small
+                                            style="color: blue; ">{{prod.discount}}% off</small>
+                                        <h4><a href="/productinformation/{{prod.id}}/">{{prod.name|truncatewords:3}}</a></h4>
+                                        <span class="item-cat"><small style = "color:red"><strike>₹ {{prod.og_price}}</strike></small></span>
+                                        <span class="item-cat"><small style = "color:black" >You Save :₹ {{prod.discounted_price}}</small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+                <!-- Pagination Number Block  -->
+                <div class="text-center">
+                    <div class="row float-right ">
+                        <span class="m-0 p-0">
+
+                            {% if all_products.has_previous %}
+                            <a class="btn btn-default btn-xs"
+                                href="?page={{all_products.previous_page_number}}&ok=#ok">«</a>
+                            {% endif %}
+
+
+                            <span>{% for pg in all_products.paginator.page_range %}
+                                {% if all_products.number == pg %}
+                                <a href="?page={{pg}}" class="btn btn-default btn-xs">
+                                    <span class="badge">{{pg}}</span>
+                                </a>
+                                {% else %}
+                                <a href="?page={{pg}}" class="btn btn-default btn-xs">
+                                    <span class="badge">{{pg}}</span>
+                                </a>
+                                {% endif %}
+                                {% endfor %}</span>
+
+                            {% if all_products.has_next %}
+                            <a class="btn btn-default btn-xs"
+                                href="?page={{all_products.next_page_number}}&ok=#ok">»</a>
+                            {% endif %}
+                        </span>
+                    </div>
+
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Signup |
+{% endblock title %}
+
+
+{% block body %}
+<div class="container" style="padding: 60px;">
+    <div class="row " >
+        <div class="col-sm-12 col-lg-5" style="border: 1px solid; padding: 30px;margin: auto;">
+
+            <div>
+                
+                {% for msg in messages %}
+                    {{msg}}
+                {% endfor %}
+                    
+            </div>
+            <!-- Begin Login -->
+                <form id="form-login" role="form" method="POST" novalidate>
+                    {% csrf_token %}
+                    <h4>Login</h4>
+                    
+                    {% for fm in form %}
+                    <div class="form-group">
+                        <label for="inputusername">{{fm.label_tag}}</label>
+                        {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                    </div>
+                    {% endfor %}
+                    
+                    <ul class="list-inline">
+                        <li><a href="#">Create new account</a></li>
+                        <li><a href="#">Request new password</a></li>
+                    </ul>
+                    <input type="submit" value="Signup" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading...">
+                </form>
+            <!-- End Login -->
+        </div>
+    </div>
+</div>
+{% endblock body %}
